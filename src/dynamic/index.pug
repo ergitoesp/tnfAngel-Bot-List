@@ -1,0 +1,13 @@
+doctype html
+include includes/head.pug
+body(onload="load()")
+    include includes/nav.pug
+    #content
+        span.header
+            h1 tnfAngel Bot List
+            p La lista oficial de bots del servidor de tnfAngel.
+        #searchMore
+            | Bots que te gustarian
+            a(href='/bots/search/') Buscar todos los bots
+        #cards
+            span#loading Cargando bots...

@@ -1,0 +1,59 @@
+doctype html
+include includes/head.pug
+script(src='/assets/js/form.js')
+script(src="https://www.google.com/recaptcha/api.js" async defer)
+link(rel="stylesheet" href="/assets/css/tags.css")
+
+body
+    include includes/nav.pug
+    #content
+        span.header
+            h1 Agregar tu bot
+            p Completa todo y dale al boton. Debes estar en el servidor oficial
+        br
+        form.center
+            .input-holder
+                input#botid.input(type='text' placeholder='La id aqui')
+                .placeholder ID del bot
+            br
+            .input-holder
+                input#prefix.input(type='text' placeholder='g.')
+                .placeholder Prefijo
+            br
+            .input-holder
+                input#description.input(maxlength='120' type='text' placeholder='Mi bot es increible...')
+                .placeholder Descripcion corta
+            br
+            .input-holder
+                input#invite.input(type='text' placeholder=' ')
+                .placeholder Invitacion personalizada
+            br
+            .input-holder
+                textarea#longdesc.input(rows='7')
+                .textarea-placeholder Descripcion Larga
+            br
+            .input-holder
+                input#support.input(type='text' placeholder=' ')
+                .placeholder Servidor de Soporte
+            br
+            .input-holder
+                input#website.input(type='text' placeholder=' ')
+                .placeholder Sitio Web
+            br
+            .input-holder
+                input#github.input(type='text' placeholder=' ')
+                .placeholder Repositorio de Github
+            br
+            .input-holder
+              select#tags(data-placeholder="Selecciona una etiqueta" multiple)
+                each tag of bot_tags
+                    option #{tag}
+            br
+            .input-holder
+                input#ownerids.input.xinput(type='text' placeholder=' ')
+                .placeholder IDs de owners adicionales
+            br
+            .center-inline.g-recaptcha(data-callback='update_token' data-sitekey=site_key data-theme=theme)
+            a.button(onclick='submit()') Enviar bot
+            br
+        br

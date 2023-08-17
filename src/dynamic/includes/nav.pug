@@ -1,0 +1,41 @@
+#navTop
+    span.nav.link
+        img(src='/assets/img/logo.png')
+    span.navtag.keep
+        a(href="/")
+            span.navtext.keep tnfAngel Bot List
+        include arrow.pug
+        if (bot && !site_key) 
+            a(href=`/bots/${bot.botid}`)
+                span.navtext #{bot.username}
+            include arrow.pug
+            a(href=`/api/embed/${bot.botid}` target="_blank")
+                span.navtext Api
+        if (req.baseUrl == "/user" || req.baseUrl == "/me")
+            a(href=`/user/${userProfile.id}`)
+                span.navtext #{userProfile.username}
+        if (req.baseUrl == "/tag")
+            a(href=`/tag/${tag}`)
+                span.navtext.capitalise #{tag}
+    a#searcher.navtag.search(href='/bots/search/')
+        #search.navtext
+            i.fas.fa-search
+            |  Buscar
+    span.dropdown
+        if (req.user)
+            a#login.navtag.keep(href='/login') #{req.user.username}##{req.user.discriminator}
+            span.dd-content
+                a(href='/join' target='_blank') Servidor oficial
+                br
+                a(href='/add') Agregar bot
+                br
+                a(href='/api/theme') Cambiar de tema
+                br
+                a(href='/about') Sobre tnfAngel Bot List
+                if (req.user.staff)
+                    br
+                    a(href='/admin') Admin dashboard
+                br
+                a(href='/logout') Cerrar sesion
+        else
+            a#login.navtag.keep(href='/login') Iniciar sesion
